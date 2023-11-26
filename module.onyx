@@ -70,7 +70,7 @@ __foreign_block :: #foreign PACKAGE_NAME {
 
     ShowCursor :: () -> void ---
     HideCursor :: () -> void ---
-    IsCursorVisible :: () -> bool ---
+    IsCursorHidden :: () -> bool ---
     EnableCursor :: () -> void ---
     DisableCursor :: () -> void ---
     IsCursorOnScreen :: () -> bool ---
@@ -161,7 +161,7 @@ __foreign_block :: #foreign PACKAGE_NAME {
     GetFileNameWithoutExt :: (filepath: cstr) -> cptr(u8) ---
     GetDirectoryPath :: (filepath: cstr) -> cptr(u8) ---
     GetPrevDirectoryPath :: (dirpath: cstr) -> cptr(u8) ---
-    GetWoringDirectory :: () -> cptr(u8) ---
+    GetWorkingDirectory :: () -> cptr(u8) ---
     GetApplicationDirectory :: () -> cptr(u8) ---
     ChangeDirectory :: (dir: cstr) -> bool ---
     IsPathFile :: (path: cstr) -> bool ---
@@ -204,7 +204,7 @@ __foreign_block :: #foreign PACKAGE_NAME {
     GetGamepadName :: (gamepad: i32) -> cptr(u8) ---
     IsGamepadButtonPressed :: (gamepad: i32, button: GamepadButton) -> bool ---
     IsGamepadButtonDown :: (gamepad: i32, button: GamepadButton) -> bool ---
-    IsGamepadButtonRelased :: (gamepad: i32, button: GamepadButton) -> bool ---
+    IsGamepadButtonReleased :: (gamepad: i32, button: GamepadButton) -> bool ---
     IsGamepadButtonUp :: (gamepad: i32, button: GamepadButton) -> bool ---
     GetGamepadButtonPressed :: () -> GamepadButton ---
     GetGamepadAxisCount :: (gamepad: i32) -> i32 ---
@@ -264,7 +264,7 @@ __foreign_block :: #foreign PACKAGE_NAME {
     DrawCircleSectorLines :: (center: Vector2, radius: f32, startAngle, endAngle: f32, segments: i32, color: Color) -> void ---
     DrawCircleV :: (center: Vector2, radius: f32, color: Color) -> void ---
     DrawCircleLines :: (centerX, centerY: i32, radius: f32, color: Color) -> void ---
-    DrawCirlceLinesV :: (centeR: Vector2, radius: f32, color: Color) -> void ---
+    DrawCircleLinesV :: (centeR: Vector2, radius: f32, color: Color) -> void ---
     DrawEllipse :: (centerX, centerY: i32, radiusH, radiusV: f32, color: Color) -> void ---
     DrawEllipseLines :: (centerX, centerY: i32, radiusH, radiusV: f32, color: Color) -> void ---
     DrawRing :: (center: Vector2, innerRadius, outerRadius, startAngle, endAngle: f32, segments: i32, color: Color) -> void ---
@@ -364,7 +364,7 @@ __foreign_block :: #foreign PACKAGE_NAME {
     ImageAlphaClear :: (image: &Image, color: Color, threshold: f32) -> void ---
     ImageAlphaMask :: (image: &Image, alphaMask: Image) -> void ---
     ImageAlphaPremultiply :: (image: &Image) -> void ---
-    ImageBlurGuassian :: (image: &Image, blurSize: i32) -> void ---
+    ImageBlurGaussian :: (image: &Image, blurSize: i32) -> void ---
     ImageKernelConvolution :: (image: &Image, kernel: [] f32) -> void ---
     ImageResize :: (image: &Image, newWidth, newHeight: i32) -> void ---
     ImageResizeNN :: (image: &Image, newWidth, newHeight: i32) -> void ---
@@ -379,7 +379,7 @@ __foreign_block :: #foreign PACKAGE_NAME {
     ImageColorTint :: (image: &Image, color: Color) -> void ---
     ImageColorInvert :: (image: &Image) -> void ---
     ImageColorGrayscale :: (image: &Image) -> void ---
-    ImageColorContract :: (image: &Image, contrast: f32) -> void ---
+    ImageColorContrast :: (image: &Image, contrast: f32) -> void ---
     ImageColorBrightness :: (image: &Image, brightness: i32) -> void ---
     ImageColorReplace :: (Image: &Image, color, replace: Color) -> void ---
     LoadImageColors :: (image: Image) -> cptr(Color) ---
@@ -398,8 +398,8 @@ __foreign_block :: #foreign PACKAGE_NAME {
     ImageDrawLineV :: (dst: &Image, start, end: Vector2, color: Color) -> void ---
     ImageDrawCircle :: (dst: &Image, centerX, centerY, radius: i32, color: Color) -> void ---
     ImageDrawCircleV :: (dst: &Image, center: Vector2, radius: i32, color: Color) -> void ---
-    ImageDrawCircleLine :: (dst: &Image, centerX, centerY, radius: i32, color: Color) -> void ---
-    ImageDrawCircleLineV :: (dst: &Image, center: Vector2, radius: i32, color: Color) -> void ---
+    ImageDrawCircleLines :: (dst: &Image, centerX, centerY, radius: i32, color: Color) -> void ---
+    ImageDrawCircleLinesV :: (dst: &Image, center: Vector2, radius: i32, color: Color) -> void ---
     ImageDrawRectangle :: (dst: &Image, posX, posY, with, height: i32, color: Color) -> void ---
     ImageDrawRectangleV :: (dst: &Image, pos, size: Vector2, color: Color) -> void ---
     ImageDrawRectangleRec :: (dst: &Image, rec: Rectangle, color: Color) -> void ---
@@ -622,7 +622,7 @@ __foreign_block :: #foreign PACKAGE_NAME {
     @last_arg_is_return_value
     LoadAudioStream :: (sampleRate, sampleSize, channels: u32, out: &AudioStream) -> void ---
     IsAudioStreamReady :: (stream: AudioStream) -> bool ---
-    UnlodaAudioStream :: (stream: AudioStream) -> void ---
+    UnloadAudioStream :: (stream: AudioStream) -> void ---
     UpdateAudioStream :: (stream: AudioStream, data: rawptr, frameCount: i32) -> void ---
     IsAudioStreamProcessed :: (stream: AudioStream) -> bool ---
     PlayAudioStream :: (stream: AudioStream) -> void ---
