@@ -1,0 +1,71 @@
+#load "./module"
+
+use core {package, *}
+use cbindgen {*}
+use raylib
+use runtime
+
+main :: () {
+    path := module_path(#file);
+
+    c_file_path := string.concat(path, "onyx_raylib.c");
+
+    result := generate_c_binding(.{
+        output_file = c_file_path,
+        foreign_block = raylib.foreign_block,
+
+        cast_map = .[
+            .{ raylib.Vector2, "Vector2" },
+            .{ raylib.Vector3, "Vector3" },
+            .{ raylib.Vector4, "Vector4" },
+            .{ raylib.Rectangle, "Rectangle" },
+            .{ raylib.Matrix, "Matrix" },
+            .{ raylib.Image, "Image" },
+            .{ raylib.Color, "Color" },
+            .{ raylib.Font, "Font" },
+            .{ raylib.Shader, "Shader" },
+            .{ raylib.Texture2D, "Texture2D" },
+            .{ raylib.VrStereoConfig, "VrStereoConfig" },
+            .{ raylib.VrDeviceInfo, "VrDeviceInfo" },
+            .{ raylib.RenderTexture2D, "RenderTexture2D" },
+            .{ raylib.Camera, "Camera" },
+            .{ raylib.Camera2D, "Camera2D" },
+            .{ raylib.Ray, "Ray" },
+            .{ raylib.AutomationEvent, "AutomationEvent" },
+            .{ raylib.AutomationEventList, "AutomationEventList" },
+            .{ raylib.FilePathList, "FilePathList" },
+            .{ raylib.NPatchInfo, "NPatchInfo" },
+            .{ raylib.GlyphInfo, "GlyphInfo" },
+            .{ raylib.Wave, "Wave" },
+            .{ raylib.Sound, "Sound" },
+            .{ raylib.Music, "Music" },
+            .{ raylib.AudioStream, "AudioStream" },
+            .{ raylib.Model, "Model" },
+            .{ raylib.Mesh, "Mesh" }
+        ],
+
+        preamble = .["#include <raylib.h>"],
+    });
+
+    if !result {
+        os.exit(1);
+    }
+
+    raylib_library := switch runtime.compiler_os {
+        case .Windows => ".\\raylib\\windows\\raylib.lib";
+        case .MacOS   => "./raylib/macos/libraylib.a";
+        case .Linux   => "./raylib/linux/libraylib.a";
+    };
+
+    result = compile_c_file(
+        c_file_path,
+        string.concat(path, "onyx_raylib"),
+        includes = .["./raylib"],
+        other_sources = .[raylib_library]
+    );
+    if !result {
+        os.exit(1);
+    }
+
+    // os.remove_file(c_file_path);
+}
