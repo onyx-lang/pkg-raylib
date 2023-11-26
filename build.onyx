@@ -57,15 +57,22 @@ main :: () {
         case .Linux   => "./raylib/linux/libraylib.a";
     };
 
+    flags := switch runtime.compiler_os {
+        case .Windows => "";
+        case .MacOS   => "-framework OpenGL -framework Cocoa -framework IOKit";
+        case .Linux   => "";
+    };
+
     result = compile_c_file(
         c_file_path,
         string.concat(path, "onyx_raylib"),
         includes = .["./raylib"],
-        other_sources = .[raylib_library]
+        other_sources = .[raylib_library],
+        flags = flags
     );
     if !result {
         os.exit(1);
     }
 
-    // os.remove_file(c_file_path);
+    os.remove_file(c_file_path);
 }
