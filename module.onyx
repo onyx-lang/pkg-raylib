@@ -558,7 +558,78 @@ __foreign_block :: #foreign PACKAGE_NAME {
     LoadModelFromMesh :: (mesh: Mesh, out: &Model) -> void ---
     IsModelReady :: (model: Model) -> bool ---
     UnloadModel :: (model: Model) -> void ---
-    // TODO Finish models functions
+    @last_arg_is_return_value
+    GetModelBoundingBox :: (model: Model, out: &BoundingBox) -> void ---
+
+    DrawModel :: (model: Model, position: Vector3, scale: f32, tint: Color) -> void ---
+    DrawModelEx :: (model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: f32, scale: Vector3, tint: Color) -> void ---
+    DrawModelWires :: (model: Model, position: Vector3, scale: f32, tint: Color) -> void ---
+    DrawModelWiresEx :: (model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: f32, scale: Vector3, tint: Color) -> void ---
+    DrawBoundingBox :: (box: BoundingBox, color: Color) -> void ---
+    DrawBillboard :: (camera: Camera, texture: Texture2D, position: Vector3, size: f32, tint: Color) -> void ---
+    DrawBillboardRec :: (camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, size: Vector2, tint: Color) -> void ---
+    DrawBillboardPro :: (camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, up: Vector3, size: Vector2, origin: Vector2, rotation: f32, tint: Color) -> void ---
+
+    UploadMesh :: (mesh: &Mesh, dynamic: bool) -> void ---
+    UpdateMeshBuffer :: (mesh: Mesh, index: i32, data: [] u8, offset: i32) -> void ---
+    UnloadMesh :: (mesh: Mesh) -> void ---
+    DrawMesh :: (mesh: Mesh, material: Material, transform: Matrix) -> void ---
+    DrawMeshInstanced :: (mesh: Mesh, material: Material, transforms: &Matrix, instances: i32) -> void ---
+    ExportMesh :: (mesh: Mesh, filename: cstr) -> bool ---
+    @last_arg_is_return_value
+    GetMeshBoundingBox :: (mesh: Mesh, out: &BoundingBox) -> void ---
+    GenMeshTangents :: (mesh: &Mesh) -> void ---
+
+    @last_arg_is_return_value
+    GenMeshPoly :: (sides: i32, radius: f32, out: &Mesh) -> void ---
+    @last_arg_is_return_value
+    GenMeshPlane :: (width, length: f32, resX, resZ: i32, out: &Mesh) -> void ---
+    @last_arg_is_return_value
+    GenMeshCube :: (width, height, length: i32, out: &Mesh) -> void ---
+    @last_arg_is_return_value
+    GenMeshSphere :: (radius: f32, rings: i32, slices: i32, out: &Mesh) -> void ---
+    @last_arg_is_return_value
+    GenMeshHemiSphere :: (radius: f32, rings: i32, slices: i32, out: &Mesh) -> void ---
+    @last_arg_is_return_value
+    GenMeshCylinder :: (radius, height: f32, slices: i32, out: &Mesh) -> void ---
+    @last_arg_is_return_value
+    GenMeshCone :: (radius, height: f32, slices: i32, out: &Mesh) -> void ---
+    @last_arg_is_return_value
+    GenMeshTorus :: (radius, size: f32, radSeg, sides: i32, out: &Mesh) -> void ---
+    @last_arg_is_return_value
+    GenMeshKnot :: (radius, size: f32, radSeg, sides: i32, out: &Mesh) -> void ---
+    @last_arg_is_return_value
+    GenMeshHeightmap :: (heightmap: Image, size: Vector3, out: &Mesh) -> void ---
+    @last_arg_is_return_value
+    GenMeshCubicmap :: (cubicmap: Image, cubeSize: Vector3, out: &Mesh) -> void ---
+
+    LoadMaterials :: (filename: cstr, materialCount: &i32) -> cptr(Material) ---
+    @last_arg_is_return_value
+    LoadMaterialDefault :: (out: &Material) -> void ---
+    IsMaterialReady :: (material: Material) -> bool ---
+    UnloadMaterial :: (material: Material) -> void ---
+    SetMaterialTexture :: (material: &Material, mapType: MaterialMapIndex, texture: Texture2D) -> void ---
+    SetModelMeshMaterial :: (model: &Model, meshId: i32, materialId: i32) -> void ---
+
+    LoadModelAnimations :: (filename: cstr, animCount: &i32) -> cptr(ModelAnimation) ---
+    UpdateModelAnimation :: (model: Model, anim: ModelAnimation, frame: i32) -> void ---
+    UnloadModelAnimation :: (anim: ModelAnimation) -> void ---
+    UnloadModelAnimations :: (animations: cptr(ModelAnimation), animCount: i32) -> void ---
+    IsModelAnimationValue :: (model: Model, anim: ModelAnimation) -> bool ---
+
+    CheckCollisionSpheres :: (center1: Vector3, radius1: f32, center2: Vector3, radius2: f32) -> bool ---
+    CheckCollisionBoxes :: (box1, box2: BoundingBox) -> bool ---
+    CheckCollisionBoxSphere :: (box: BoundingBox, center: Vector3, radius: f32) -> bool ---
+    @last_arg_is_return_value
+    GetRayCollisionSphere :: (ray: Ray, center: Vector3, radius: f32, out: &RayCollision) -> void ---
+    @last_arg_is_return_value
+    GetRayCollisionBox :: (ray: Ray, box: BoundingBox, out: &RayCollision) -> void ---
+    @last_arg_is_return_value
+    GetRayCollisionMesh :: (ray: Ray, mesh: Mesh, transform: Matrix, out: &RayCollision) -> void ---
+    @last_arg_is_return_value
+    GetRayCollisionTriangle :: (ray: Ray, p1, p2, p3: Vector3, out: &RayCollision) -> void ---
+    @last_arg_is_return_value
+    GetRayCollisionQuad :: (ray: Ray, p1, p2, p3, p4: Vector3, out: &RayCollision) -> void ---
 
     InitAudioDevice :: () -> void ---
     CloseAudioDevice :: () -> void ---

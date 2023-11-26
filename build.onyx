@@ -31,6 +31,7 @@ main :: () {
             .{ raylib.Camera, "Camera" },
             .{ raylib.Camera2D, "Camera2D" },
             .{ raylib.Ray, "Ray" },
+            .{ raylib.RayCollision, "RayCollision" },
             .{ raylib.AutomationEvent, "AutomationEvent" },
             .{ raylib.AutomationEventList, "AutomationEventList" },
             .{ raylib.FilePathList, "FilePathList" },
@@ -41,7 +42,10 @@ main :: () {
             .{ raylib.Music, "Music" },
             .{ raylib.AudioStream, "AudioStream" },
             .{ raylib.Model, "Model" },
-            .{ raylib.Mesh, "Mesh" }
+            .{ raylib.ModelAnimation, "ModelAnimation" },
+            .{ raylib.Mesh, "Mesh" },
+            .{ raylib.BoundingBox, "BoundingBox" },
+            .{ raylib.Material, "Material" }
         ],
 
         preamble = .["#include <raylib.h>"],
