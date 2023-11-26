@@ -615,7 +615,7 @@ __foreign_block :: #foreign PACKAGE_NAME {
     UpdateModelAnimation :: (model: Model, anim: ModelAnimation, frame: i32) -> void ---
     UnloadModelAnimation :: (anim: ModelAnimation) -> void ---
     UnloadModelAnimations :: (animations: cptr(ModelAnimation), animCount: i32) -> void ---
-    IsModelAnimationValue :: (model: Model, anim: ModelAnimation) -> bool ---
+    IsModelAnimationValid :: (model: Model, anim: ModelAnimation) -> bool ---
 
     CheckCollisionSpheres :: (center1: Vector3, radius1: f32, center2: Vector3, radius2: f32) -> bool ---
     CheckCollisionBoxes :: (box1, box2: BoundingBox) -> bool ---
