@@ -5,7 +5,7 @@ use core
 use raylib
 
 main :: () {
-    raylib.InitWindow(1200, 900, #cstr "Simple RAYLIB Window");
+    raylib.InitWindow(1200, 900, "Simple RAYLIB Window");
 
     raylib.SetTargetFPS(60);
 
@@ -27,7 +27,7 @@ main :: () {
         }
 
         raylib.BeginDrawing();
-        raylib.ClearBackground(.{30, 30, 30, 255});
+        raylib.ClearBackground(.{40, 40, 40, 255});
         raylib.DrawRectangleRec(r, r_color);
         raylib.DrawText(pos_text.data, 100, 100, 10, .{255, 0, 0, 255});
         raylib.DrawFPS(0, 0);
