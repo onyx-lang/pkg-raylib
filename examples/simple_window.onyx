@@ -16,7 +16,7 @@ main :: () {
 
         pos := raylib.GetMousePosition();
         pos_text := core.tprintf("{}\0", pos);
-        
+
         r := raylib.Rectangle.{
             100, 150, 300, 200
         };
@@ -27,7 +27,7 @@ main :: () {
         }
 
         raylib.BeginDrawing();
-        raylib.ClearBackground(.{40, 40, 40, 255});
+        raylib.ClearBackground(raylib.BLACK);
         raylib.DrawRectangleRec(r, r_color);
         raylib.DrawText(pos_text.data, 100, 100, 10, .{255, 0, 0, 255});
         raylib.DrawFPS(0, 0);
