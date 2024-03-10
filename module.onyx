@@ -391,7 +391,7 @@ __foreign_block :: #foreign PACKAGE_NAME {
     ImageAlphaMask :: (image: &Image, alphaMask: Image) -> void ---
     ImageAlphaPremultiply :: (image: &Image) -> void ---
     ImageBlurGaussian :: (image: &Image, blurSize: i32) -> void ---
-    ImageKernelConvolution :: (image: &Image, kernel: [] f32) -> void ---
+    // ImageKernelConvolution :: (image: &Image, kernel: [] f32) -> void ---   This is missing on Raylib 5.0 releases
     ImageResize :: (image: &Image, newWidth, newHeight: i32) -> void ---
     ImageResizeNN :: (image: &Image, newWidth, newHeight: i32) -> void ---
     ImageResizeCanvas :: (image: &Image, newWidth, newHeight, offsetX, offsetY: i32, fill: Color) -> void ---
