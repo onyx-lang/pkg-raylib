@@ -3,7 +3,7 @@ package {
     author "Brendan Hansen" 
     url "" 
     description "Raylib bindings for Onyx" 
-    version "0.0.5" 
+    version "0.0.6" 
 }
 
 config {
