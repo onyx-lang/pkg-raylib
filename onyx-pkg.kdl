@@ -13,6 +13,6 @@ config {
 
 native {
     library "onyx_raylib" 
-    build "onyx run build --generate-foreign-info" 
+    build "onyx run --generate-foreign-info build.onyx" 
 }
 
