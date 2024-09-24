@@ -64,7 +64,7 @@ main :: () {
     flags := switch runtime.compiler_os {
         case .Windows => "";
         case .MacOS   => "-framework OpenGL -framework Cocoa -framework IOKit -Wno-int-conversion";
-        case .Linux   => "";
+        case .Linux   => "-Wno-int-conversion";
     };
 
     result = compile_c_file(
